@@ -1,18 +1,20 @@
 function mincost(arr)
 { 
-	arr.sort();
-	let mincost=0;
-	let sum=0;
-	for(let i=0;i<n-1;i++){
-		mincost=mincost+arr[i]+arr[i+1];
-		sum=arr[i]+arr[i+1];
-		arr.push(sum);
-		arr.sort();
-	    }
-	return mincost;
-	
-//write your code here
-// return the min cost
+	 arr.sort((a, b) => a - b); // Sort once at the start
+    let totalCost = 0;
+
+    while (arr.length > 1) {
+        let first = arr.shift(); // Smallest element
+        let second = arr.shift(); // Second smallest element
+        let cost = first + second;
+        totalCost += cost;
+
+        arr.push(cost); // Add combined rope back
+        arr.sort((a, b) => a - b); // Sort again
+    }
+
+    return totalCost;
+
   
 }
 
